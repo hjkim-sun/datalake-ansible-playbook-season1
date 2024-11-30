@@ -1,0 +1,17 @@
+---
+- name: Setting /etc/hosts file
+  hosts: kafka
+  tasks:
+    - name: create python virtual environment
+      become: true
+      command:
+        cmd: python3 -m venv /src/kafka_venv
+        creates: /src/kafka_venv
+
+    - name: change owner to kafka
+      become: true
+      file:
+        path: /src/kafka_venv
+        owner: kafka
+        group: kafka
+        recurse: yes

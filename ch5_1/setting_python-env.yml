@@ -1,0 +1,30 @@
+---
+- name: Setting kafka producer environment
+  hosts: kafka
+  tasks:
+    - name: Modify .bashrc
+      blockinfile:
+        path: /home/kafka/.bashrc
+        block: |
+          source /src/kafka_venv/bin/activate
+          export PYTHONPATH="${PYTHONPATH}:/src/kafka-producer"
+        marker: "# {mark} Setting Python Environment"
+      become: yes
+      tags: python_env
+
+    - name: install libraries
+      become: yes
+      become_user: kafka
+      become_method: sudo
+      pip:
+        requirements: /src/kafka-producer/requirements.txt
+        virtualenv: /src/kafka_venv
+      tags: install_libs
+
+    - name: create log directory
+      become: yes
+      file:
+        path: /log
+        owner: kafka
+        group: kafka
+        state: directory
