@@ -14,7 +14,7 @@
           [Service]
           Type=forking
           Environment=PYTHONPATH=/src/kafka-producer
-          ExecStart=/src/kafka_venv/bin/python /src/kafka-producer/bicycle_producer/bicycle_producer.py
+          ExecStart=/src/kafka_venv/bin/python /src/kafka-producer/producers/bicycle_producer.py
           User=kafka
           Group=kafka
           Restart=always
@@ -23,10 +23,12 @@
           WantedBy=multi-user.target
         marker: "# {mark} Kafka UI Service"
       become: yes
+
     - name: daemon-reload
       systemd_service:
         daemon_reload: yes
       become: yes
+
     - name: Start Bicycle Producer Service
       systemd_service:
         state: started
