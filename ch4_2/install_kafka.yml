@@ -46,6 +46,14 @@
         state: directory
       become: yes
 
+    - name: create log directory
+      become: yes
+      file:
+        path: /log
+        owner: kafka
+        group: kafka
+        state: directory
+
     - name: make kafka segment directory
       ansible.builtin.file:
         path: /data/kafka-logs

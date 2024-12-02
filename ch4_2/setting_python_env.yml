@@ -30,6 +30,7 @@
         path: /home/kafka/.bashrc
         block: |
           source /src/kafka_venv/bin/activate
+          export PYTHONPATH="${PYTHONPATH}:/src/kafka-producer"
           alias src="cd /src"
           alias bin="cd /engine/confluent-6.2.14/bin"
           alias logs="cd /engine/confluent-6.2.14/logs"
