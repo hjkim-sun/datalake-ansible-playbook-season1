@@ -1,7 +1,16 @@
 ---
-- name: Setting /etc/hosts file
+- name: create python env
   hosts: kafka
   tasks:
+    - name: install python3.10, python3-pip, venv
+      become: true
+      apt:
+        pkg:
+          - python3.10
+          - python3-pip
+          - python3.10-venv
+        update_cache: true
+
     - name: create python virtual environment
       become: true
       command:
@@ -15,3 +24,14 @@
         owner: kafka
         group: kafka
         recurse: yes
+
+    - name: Modify .bashrc
+      blockinfile:
+        path: /home/kafka/.bashrc
+        block: |
+          source /src/kafka_venv/bin/activate
+          alias src="cd /src"
+          alias bin="cd /engine/confluent-6.2.14/bin"
+          alias logs="cd /engine/confluent-6.2.14/logs"
+        marker: "# {mark} Setting bashrc"
+      become: yes

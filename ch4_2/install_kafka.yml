@@ -53,12 +53,3 @@
         owner: kafka
         group: kafka
       become: yes
-
-    - name: install python3.10, python3-pip, venv
-      become: true
-      apt:
-        pkg:
-          - python3.10
-          - python3-pip
-          - python3.10-venv
-        update_cache: true
