@@ -2,6 +2,18 @@
 - name: create python env
   hosts: kafka
   tasks:
+    - name: install pkg for add repository
+      become: yes
+      apt:
+        pkg:
+          - software-properties-common
+        update_cache: true
+
+    - name: Add repo
+      become: yes
+      apt_repository:
+        repo: ppa:deadsnakes/ppa
+
     - name: install python3.10, python3-pip, venv
       become: true
       apt:
@@ -14,7 +26,7 @@
     - name: create python virtual environment
       become: true
       command:
-        cmd: python3 -m venv /src/kafka_venv
+        cmd: python3.10 -m venv /src/kafka_venv
         creates: /src/kafka_venv
 
     - name: change owner to kafka
