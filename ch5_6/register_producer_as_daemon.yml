@@ -12,7 +12,7 @@
           After=network.target docker.service kafka.service
 
           [Service]
-          Type=forking
+          Type=simple
           Environment=PYTHONPATH=/src/kafka-producer
           ExecStart=/src/kafka_venv/bin/python /src/kafka-producer/producers/bicycle_producer.py
           User=kafka
