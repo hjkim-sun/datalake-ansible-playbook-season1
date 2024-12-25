@@ -13,7 +13,7 @@
       lvg:
         vg: vg-data
         pvs: /dev/nvme1n1
-        pesize: 32
+        pesize: 20
       become: yes
 
     - name: Create LV
