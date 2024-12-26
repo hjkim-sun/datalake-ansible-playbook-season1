@@ -1,6 +1,6 @@
 ---
 - name: install codeDeploy Agent
-  hosts: kafka
+  hosts: spark
   tasks:
     - name: install packages
       apt:
