@@ -13,7 +13,8 @@
           export SPARK_HOME=/engine/spark-3.5.1-bin-hadoop3
           export HADOOP_HOME=/engine/hadoop-3.3.6
           export PATH=$SPARK_HOME/bin:$HADOOP_HOME/bin:$PATH
-
+          export AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT=true
+          
           alias bin="cd /engine/spark-3.5.1-bin-hadoop3/bin"
           alias conf="cd /engine/spark-3.5.1-bin-hadoop3/conf"
         marker: "# {mark} Setting bashrc"
