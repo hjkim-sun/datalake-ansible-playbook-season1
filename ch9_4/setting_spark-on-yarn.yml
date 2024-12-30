@@ -20,6 +20,15 @@
         marker: "# {mark} Setting bashrc"
       become: yes
 
+    - name: copy spark-env.sh.template to spark-env.sh
+      copy:
+        remote_src: true
+        src: /engine/spark-3.5.1-bin-hadoop3/conf/spark-env.sh.template
+        dest: /engine/spark-3.5.1-bin-hadoop3/conf/spark-env.sh
+        owner: spark
+        group: spark
+      become: yes
+
     - name: modify spark-env.sh
       blockinfile:
         path: /engine/spark-3.5.1-bin-hadoop3/conf/spark-env.sh
@@ -41,7 +50,7 @@
         group: spark
       become: yes
 
-    - name: rename log4j2.properties.template to log4j2.properties
+    - name: copy log4j2.properties.template to log4j2.properties
       copy:
         remote_src: true
         src: /engine/spark-3.5.1-bin-hadoop3/conf/log4j2.properties.template
@@ -51,7 +60,7 @@
       become: yes
 
 
-    - name: comment rootLogger.level
+    - name: modify rootLogger.level
       lineinfile:
         path: /engine/spark-3.5.1-bin-hadoop3/conf/log4j2.properties
         state: present
