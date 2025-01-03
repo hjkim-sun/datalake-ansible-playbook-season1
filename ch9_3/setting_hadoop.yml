@@ -399,3 +399,10 @@
           </configuration>
         marker: "<!--{mark} Setting hadoop configurations from ansible-->"
       become: yes
+
+    - name: modify capacity-scheduler.xml file for yarn.scheduler.capacity.maximum-am-resource-percent property
+      lineinfile:
+        dest: /engine/hadoop-3.3.6/etc/hadoop/capacity-scheduler.xml
+        regexp: '<value>0\.[1-9]</value>'
+        line: '    <value>0.9</value>'
+      become: yes
