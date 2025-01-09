@@ -5,7 +5,7 @@
     - name: Install apt libraries
       apt:
         pkg:
-          - mysql-server
+          - mysql-server=8.0.*
           - python3-mysqldb
         update_cache: true
       become: yes
