@@ -28,3 +28,12 @@
       systemd_service:
         daemon_reload: yes
       become: yes
+
+    - name: Start Hive Metastore Service
+      systemd_service:
+        state: started
+        name: hive-metastore
+        enabled: true
+      become: yes
+      tags:
+        - start
