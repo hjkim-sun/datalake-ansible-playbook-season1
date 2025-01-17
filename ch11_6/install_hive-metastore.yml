@@ -70,21 +70,6 @@
         recurse: true
       become: yes
 
-    - name: copy required jars
-      copy:
-        src: "{{ item.src }}"
-        dest: /engine/apache-hive-metastore-3.1.2-bin/lib
-        remote_src: yes
-        owner: hadoop
-        group: hadoop
-      loop:
-        - src: /engine/spark-3.5.1-bin-hadoop3/jars/aws-java-sdk-bundle-1.12.769.jar
-        - src: /engine/spark-3.5.1-bin-hadoop3/jars/bundle-2.23.19.jar
-        - src: /engine/spark-3.5.1-bin-hadoop3/jars/hadoop-aws-3.3.4.jar
-        - src: /engine/spark-3.5.1-bin-hadoop3/jars/hive-exec-2.3.9-core.jar
-        - src: /engine/spark-3.5.1-bin-hadoop3/jars/wildfly-openssl-1.1.3.Final.jar
-      become: yes
-
     - name: backup metastore-site.xml
       copy:
         src: /engine/apache-hive-metastore-3.1.2-bin/conf/metastore-site.xml
