@@ -59,3 +59,9 @@
         - src: /engine/spark-3.5.1-bin-hadoop3/jars/hadoop-aws-3.3.4.jar
         - src: /engine/spark-3.5.1-bin-hadoop3/jars/wildfly-openssl-1.1.3.Final.jar
       become: yes
+
+    - name: Restart Hive Metastore Service
+      systemd_service:
+        state: restarted
+        name: hive-metastore
+      become: yes
