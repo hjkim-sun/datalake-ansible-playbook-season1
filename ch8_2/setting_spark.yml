@@ -37,7 +37,7 @@
         cmd: /usr/bin/python3.10 -m venv /src/spark_venv
         creates: /src/spark_venv
 
-    - name: change owner to kafka
+    - name: change owner to spark
       become: true
       file:
         path: /src/spark_venv
